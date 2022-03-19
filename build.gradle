@@ -30,6 +30,7 @@ repositories {
 dependencies {
     //springboot 기본
     implementation('org.springframework.boot:spring-boot-starter-web')
+    //@test 어노테이션 설정시 자동 추가됨.
     implementation 'junit:junit:4.13.1'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 

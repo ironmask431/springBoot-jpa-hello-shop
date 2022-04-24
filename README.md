@@ -1,4 +1,4 @@
-# springBoot_images_shop (진행중)
+# springBoot_images_shop (일시중지)
 
 목적 : 
 1. 스프링부트로 간단한 이미지 판매 샵 구축

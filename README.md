@@ -1,4 +1,4 @@
-# springBoot_jpa_study
+# springBoot_jpa_hello_shop
 
 목적 : 
-1. 책 - "자바 ORM 표준 JPA 프로그래밍" 학습
+1. 스프링부트 + JPA에 간단한 쇼핑몰 구축

@@ -3,23 +3,27 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
+//boot 버전 변경시 추가된 라이브러리 버전까지 같이 변경됨 (편리)
 
 group = 'com.leesh'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+//롬복 추가시 설정되는 세팅
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
 }
 
+//라이브러리 다운로드 출처 설정
 repositories {
     mavenCentral()
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'

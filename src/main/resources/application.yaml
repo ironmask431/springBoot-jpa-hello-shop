@@ -1,0 +1,38 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+
+  h2:
+    console:
+      enabled: true
+      #로컬이외 환경에서 구동 시 h2-console 접속허용
+      settings:
+        web-allow-others: true
+
+  datasources:
+    url: jdbc:h2:mem:jpashop
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    #JPA 방언 설정(H2)
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        #하이버네이트 실행SQL를 콘솔에 표시 - system.out.println을 이용해 출력
+        #show_sql: true
+        #sql 콘솔출력시 보기좋게 출력
+        format_sql: true
+    #create 실행 후 data.sql에 쿼리 실행하도록 설정
+    defer-datasource-initialization: true
+
+logging:
+  level:
+    #하이버네이트 sql관련 로그들이 모두 debug모드로 실행됨 - logger를 이용해 출력
+    org.hibernate.SQL: debug
+    #쿼리에 들어가는 파라미터 표시
+    org.hibernate.type: trace

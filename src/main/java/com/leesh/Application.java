@@ -1,4 +1,4 @@
-package com.basic;
+package com.leesh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

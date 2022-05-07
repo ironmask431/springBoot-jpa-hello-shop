@@ -1,6 +1,6 @@
 package com.leesh.repository;
 
-import com.leesh.Entity.Member;
+import com.leesh.domain.Member;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

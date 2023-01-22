@@ -11,19 +11,21 @@ spring:
         web-allow-others: true
 
   datasources:
-    url: jdbc:h2:mem:jpashop
-    driver-class-name: org.h2.Driver
+    #MVCC=TRUE 넣어주는것이 권잠됨. (병렬처리 속도향상)
+    url: jdbc:h2:tcp://localhost/~/jpashop;MVCC=TRUE
     username: sa
     password:
+    driver-class-name: org.h2.Driver
 
   jpa:
     #JPA 방언 설정(H2)
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
+      # create : 애플리케이션 실행시점에 기존 생성된 테이블들을 다 지우고 엔티티를 기반으로 테이블을 다시 자동생성한다.
       ddl-auto: create
     properties:
       hibernate:
-        #하이버네이트 실행SQL를 콘솔에 표시 - system.out.println을 이용해 출력
+        #하이버네이트 실행SQL를 콘솔에 표시 - system.out.println을 이용해 출력. 아래 logger를 이용해 출력하므로 생략
         #show_sql: true
         #sql 콘솔출력시 보기좋게 출력
         format_sql: true

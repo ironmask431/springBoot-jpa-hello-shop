@@ -1,7 +1,7 @@
 # springBoot-jpa-hello-shop
 
 ## 강의명
-실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발
+실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발(김영한)
 
 ## 서론 
 스프링부트는
@@ -30,7 +30,7 @@
 
 - 도메인 모델 설계   
 
-![스크린샷 2023-01-17 오후 12 33 04](https://user-images.githubusercontent.com/48856906/212805560-c21e3ca4-df1b-4d18-b10a-ec495e74a9e0.png)
+![크기변환 크기변환 001](https://user-images.githubusercontent.com/48856906/213454636-141f822a-2d35-4ecc-acc2-4ed2b78ee918.png)
 
 - 엔티티 설계  
 
@@ -42,7 +42,7 @@
 
 - 애플리케이션 아키텍처 구성  
 
-![스크린샷 2023-01-17 오후 12 34 04](https://user-images.githubusercontent.com/48856906/212805580-dd36bf51-73d4-4f0e-9dc3-3e4a45f63425.png)
+![크기변환 002](https://user-images.githubusercontent.com/48856906/213454649-8bec543b-fbd1-4406-9ecb-9a740eb5424e.png)
 
 - 핵심 비즈니스 로직 개발  
 1. 회원, 상품, 주문 도메인 개발  

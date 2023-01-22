@@ -1,32 +1,43 @@
 package com.leesh.repository;
 
-import com.leesh.Application;
-import com.leesh.domain.Member;
-import org.assertj.core.api.Assertions;
+import com.leesh.Repository.MemberRepository;
+import com.leesh.domains.Member;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-@SpringBootTest(classes = Application.class)
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
 class MemberRepositoryTest {
+
     @Autowired
     MemberRepository memberRepository;
 
     @Test
     @Transactional
-    public void testMember() throws  Exception {
+    void save() {
         //given
         Member member = new Member();
-        member.setName("memberA");
+        member.setUsername("nameA");
 
         //when
-        Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.find(saveId);
+        Long savedId = memberRepository.save(member);
+        Member findMember = memberRepository.find(savedId);
 
         //then
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
-        Assertions.assertThat(findMember).isEqualTo(member);
+        Assertions.assertEquals(savedId, findMember.getId());
+        Assertions.assertEquals(member.getUsername(), findMember.getUsername());
+
+        //첫 테스트 실행 시 "No EntityManager with actual transaction available for current thread" 에러 발생
+        //원인 -> 모든 엔티티 데이터 입력, 변경은 트랜잭션안에서만 이루어지므로. @Transactional 어노테이션필요함.
+    }
+
+    @Test
+    void find() {
+
     }
 }

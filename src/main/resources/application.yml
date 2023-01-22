@@ -27,5 +27,5 @@ spring:
 logging.level:
   #하이버네이트 sql관련 로그들이 모두 debug모드로 실행됨 - logger를 이용해 출력
   org.hibernate.SQL: debug
-  #쿼리에 들어가는 파라미터 표시
+  #쿼리에 들어가는 ? 파라미터 값을 표시
   org.hibernate.type: trace

@@ -3,13 +3,12 @@ package com.leesh.repository;
 import com.leesh.Repository.MemberRepository;
 import com.leesh.domains.Member;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MemberRepositoryTest {
@@ -17,6 +16,7 @@ class MemberRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
 
+    //기본적으로 @Test 어노테이션에서 실행된 쿼리들은 모두 자동 롤백처리된다.
     @Test
     @Transactional
     void save() {

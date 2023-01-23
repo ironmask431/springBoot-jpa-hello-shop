@@ -17,6 +17,8 @@ class MemberRepositoryTest {
     MemberRepository memberRepository;
 
     //기본적으로 @Test 어노테이션에서 실행된 쿼리들은 모두 자동 롤백처리된다.
+    //롤백하지 않으려면 @Rollback(false) 어노테이션필요
+    //테스트 메소드안에서 DB insert,update,delete 동작 필요할 시 @Transactional로 영속성 컨텍스트 부여
     @Test
     @Transactional
     void save() {

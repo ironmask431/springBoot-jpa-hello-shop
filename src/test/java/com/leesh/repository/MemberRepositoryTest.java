@@ -24,7 +24,7 @@ class MemberRepositoryTest {
     void save() {
         //given
         Member member = new Member();
-        member.setUsername("nameA");
+        member.setName("nameA");
 
         //when
         Long savedId = memberRepository.save(member);
@@ -32,7 +32,7 @@ class MemberRepositoryTest {
 
         //then
         Assertions.assertEquals(savedId, findMember.getId());
-        Assertions.assertEquals(member.getUsername(), findMember.getUsername());
+        Assertions.assertEquals(member.getName(), findMember.getName());
 
         //첫 테스트 실행 시 "No EntityManager with actual transaction available for current thread" 에러 발생
         //원인 -> 모든 엔티티 데이터 입력, 변경은 트랜잭션안에서만 이루어지므로. @Transactional 어노테이션필요함.

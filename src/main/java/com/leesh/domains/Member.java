@@ -20,7 +20,9 @@ public class Member {
     @Embedded //내장타입 사용함을 적용
     private Address address;
 
-    @OneToMany //Order 다 : 1 Member 관계이므로
+    @OneToMany(mappedBy = "member") //Order 다 : 1 Member 관계이므로
+    //mappedBy : 연관관계의 하인. Order 엔티티의 member 필드값에 의해 변경되어진다 라는것을 의미함.
+    //연관관계의 하인이므로 orders 의 값을 직접변경한다고해서 DB데이터가 변경되지 않는다.
     private List<Order> orders = new ArrayList<>();
 
 

@@ -1,5 +1,5 @@
 # yml 파일은 tab 키로 들여쓰기 하면 안된다. 반드시 스페이스바 2칸으로 구분(중요)
-# application.yml 파일위치는 resources/application.yml 경로 다를경우 적용안됨.
+# application.yml 파일위치는 resources/application.yml 경로가 이와 다를경우 적용안됨.
 spring:
   datasource:
     url: jdbc:h2:tcp://localhost/~/jpashop #MVCC=TRUE 넣으니까 에러발생.. 빼자

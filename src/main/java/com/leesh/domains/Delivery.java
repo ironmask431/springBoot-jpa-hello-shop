@@ -1,12 +1,13 @@
 package com.leesh.domains;
 
 import lombok.Getter;
-import org.springframework.aop.framework.adapter.AdvisorAdapterRegistrationManager;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 public class Delivery {
 
     @Id

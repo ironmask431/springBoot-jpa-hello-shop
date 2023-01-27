@@ -3,6 +3,8 @@ package com.leesh.domains;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //Inheritance 상속관계 전략
@@ -22,5 +24,9 @@ public abstract class Item {
     private String name;
     private int price;
     private int stockQuantity;
+
+    //다:다 관계 예제. 실무에선 쓰지마세요.
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 
 }

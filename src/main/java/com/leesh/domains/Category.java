@@ -22,7 +22,7 @@ public class Category {
     private String name;
 
     //다:다 관계 예제. 실무에선 쓰기에는 부적합함.
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     //다대다 관계에서는 category 와 item 사이에 중간테이블이 필요하다. (category_item)
     @JoinTable(
             name="category_item"
@@ -32,7 +32,7 @@ public class Category {
     private List<Item> items = new ArrayList<>();
 
     //Category 게층구조에서 부모를 구현
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="parent_id")
     private Category parent;
 

@@ -25,7 +25,4 @@ public class Member {
     //연관관계의 하인이므로 orders 의 값을 직접변경한다고해서 DB데이터가 변경되지 않는다.
     private List<Order> orders = new ArrayList<>();
 
-
-
-
 }

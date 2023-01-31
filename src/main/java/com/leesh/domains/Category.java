@@ -39,4 +39,10 @@ public class Category {
     //Category 게층구조에서 자식을 구현
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>();
+
+    //셀프 연관관계설정용 편의메소드
+    public void addChildCategory(Category category){
+        this.child.add(category);
+        category.setParent(this);
+    }
 }

@@ -1,4 +1,4 @@
-package com.leesh.Controller;
+package com.leesh.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,7 @@
 package com.leesh.repository;
 
 import com.leesh.domains.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -8,10 +9,14 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext //스프링이 관리하는 EntityManager 를 주입해줌.
-    private EntityManager em;
+    //@PersistenceContext //스프링이 관리하는 EntityManager 를 주입해줌.
+    //private EntityManager em;
+
+    //spring boot 에서 EntityManager autowired 를 지원해주기때문에 아래 형식으로 변경가능
+    private final EntityManager em;
 
     //cmd + shift + T : 자동으로 해당 메소드 테스트코드를 생성해줌. (IDE단축키)
     public Long save(Member member) {

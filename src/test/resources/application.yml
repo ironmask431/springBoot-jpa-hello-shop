@@ -1,0 +1,32 @@
+# test 패키지의 resources 에 application.yml 을 넣게되면 테스트 구동환경은 이 yml 기준으로 구성됨.
+# test 패키지의 application.yml 을 따로두는것이 일반적이다.
+# h2 url 을 인메모리모드로 하면 실제 db를 사용하지않고 JVM안에서 가상db를 사용함. (테스트 db 환경구축용)
+# 그러나 사실 아래 datasource 설정을 따로 안해줘도 된다.
+# test 패키지에 application.yml 파일을 만들어주면 스프링부트에서 기본적으로 인메모리 DB모드로 테스트를 실행시키기 때문.
+
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:test # h2 인메모리모드. 실제 db를 사용하지않고 JVM안에서 가상db를 사용함. (테스트 db 환경구축용)
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      # create : 애플리케이션 실행시점에 기존 생성된 테이블들을 다 지우고 엔티티를 기반으로 테이블을 다시 자동생성한다.
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        #하이버네이트 실행SQL를 콘솔에 표시 - system.out.println을 이용해 출력. 아래 logger를 이용해 출력하므로 생략
+#        #        show_sql: true
+#        #sql 콘솔출력시 보기좋게 출력
+#        format_sql: true
+#    #create 실행 후 data.sql에 쿼리 실행하도록 설정
+#    defer-datasource-initialization: true
+
+
+logging.level:
+  #하이버네이트 sql관련 로그들이 모두 debug모드로 실행됨 - logger를 이용해 출력
+  org.hibernate.SQL: debug
+  #쿼리에 들어가는 ? 파라미터 값을 표시
+  org.hibernate.type: trace

@@ -1,5 +1,6 @@
 package com.leesh.domains;
 
+import com.leesh.enums.DeliveryStatus;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,5 +1,6 @@
 package com.leesh.domains;
 
+import com.leesh.exception.NotEnoughStockException;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -28,5 +29,22 @@ public abstract class Item {
     //다:다 관계 예제. 실무에선 쓰지마세요.
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
+
+    //==비즈니스 로직==//
+    //객체지향적인 설계 : 해당 엔티티관련 비즈니스 로직은 엔티티에 설정해놓는게 응집도가 높다.
+    //객체지향적인 관점에서 좋지않은 설계 : 서비스단에서 재고를 더하고, 빼는 로직을 수행 후 재고를 엔티티에 setter 해주는 형식.
+    public void addStock(int qty){
+        this.stockQuantity += qty;
+    }
+
+    public void reduceStock(int qty){
+        if(this.stockQuantity < qty){
+            throw new NotEnoughStockException("stock is not enough");
+        }
+        this.stockQuantity -= qty;
+    }
+
+
+
 
 }

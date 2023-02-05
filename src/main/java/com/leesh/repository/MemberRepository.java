@@ -19,16 +19,16 @@ public class MemberRepository {
     private final EntityManager em;
 
     //cmd + shift + T : 자동으로 해당 메소드 테스트코드를 생성해줌. (IDE단축키)
-    public Long save(Member member) {
+    public long save(Member member) {
         em.persist(member);
         return member.getId();
     }
 
-    public Member find(Long id) {
+    public Member findOne(Long id) {
         return em.find(Member.class, id);
     }
 
-    //jpql 의 특징 : 엔티티를 기준으로 조회한다. (실제쿼리는 테이블을 기준으로 조회)
+    //jpql 의 특징 : 엔티티를 기준으로 조회한다. (실제쿼리는 테이블을 기준으로 조회한다는 점과 차이점이 있음.)
     public List<Member> finalAll() {
         return em.createQuery("select m from Member m", Member.class)
                 .getResultList();

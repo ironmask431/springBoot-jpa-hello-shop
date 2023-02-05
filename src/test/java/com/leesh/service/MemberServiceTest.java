@@ -30,11 +30,11 @@ class MemberServiceTest {
         member.setName("lee");
 
         //when
-        Long savedId = memberService.join(member);
+        Long savedId = memberService.save(member);
 
         //@Transactional 안에서는 같은 영속성 컨텍스트가 걸리므로 id가 같은 엔티티는 동일한 엔티티로 취급된다.
         //then
-        Assert.assertEquals(member, memberRepository.find(savedId));
+        Assert.assertEquals(member, memberRepository.findOne(savedId));
     }
 
     @Test
@@ -47,9 +47,9 @@ class MemberServiceTest {
         member2.setName("kim");
 
         //when
-        memberService.join(member1);
+        memberService.save(member1);
         try{
-            memberService.join(member2); //IllegalStateException 예외가 발생해야 한다. (동일한 이름)
+            memberService.save(member2); //IllegalStateException 예외가 발생해야 한다. (동일한 이름)
         }catch (IllegalStateException e){
             return;
         }

@@ -17,11 +17,8 @@ public class MemberService {
     //어떤 필드가 필요한지 직관적으로 알수 있어서 좋음.
     private final MemberRepository memberRepository;
 
-    /**
-     * 회원가입
-     */
     @Transactional
-    public Long join(Member member){
+    public Long save(Member member){
         validateDuplicateMember(member);
         return memberRepository.save(member);
     }
@@ -37,18 +34,11 @@ public class MemberService {
         }
     }
 
-
-    /**
-     * 회원 전체 조회
-     */
-    public List<Member> findMember(){
+    public List<Member> finalAll(){
         return memberRepository.finalAll();
     }
 
-    /**
-     * 단일 회원 조회
-     */
     public Member findOne(Long memberId){
-        return memberRepository.find(memberId);
+        return memberRepository.findOne(memberId);
     }
 }

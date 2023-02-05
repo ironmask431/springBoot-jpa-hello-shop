@@ -13,7 +13,7 @@ import java.util.List;
 public class ItemRepository {
     private final EntityManager em;
 
-    public long save(Item item){
+    public Long save(Item item){
         //id가 없는 신규생성 item일 경우 persist, id가 있는 기존객체일 경우 merge
         if(item.getId() == null){
             em.persist(item);
@@ -30,8 +30,4 @@ public class ItemRepository {
     public List<Item> finaAll(){
         return em.createQuery("select i from Item i", Item.class).getResultList();
     }
-
-
-
-
 }

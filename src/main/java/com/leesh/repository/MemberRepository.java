@@ -19,7 +19,7 @@ public class MemberRepository {
     private final EntityManager em;
 
     //cmd + shift + T : 자동으로 해당 메소드 테스트코드를 생성해줌. (IDE단축키)
-    public long save(Member member) {
+    public Long save(Member member) {
         em.persist(member);
         return member.getId();
     }

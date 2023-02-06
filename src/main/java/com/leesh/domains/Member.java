@@ -17,12 +17,13 @@ public class Member {
 
     private String name;
 
-    @Embedded //내장타입 사용함을 적용
+    @Embedded //내장타입 사용함을 적용. member 테이블에 city,street, zipcode 컬럼 생성됨.
     private Address address;
 
     @OneToMany(mappedBy = "member") //Order 다 : 1 Member 관계이므로
     //mappedBy : 연관관계의 하인. Order 엔티티의 member 필드값에 의해 변경되어진다 라는것을 의미함.
     //연관관계의 하인이므로 orders 의 값을 직접변경한다고해서 DB데이터가 변경되지 않는다.
+    // ** 실제 member DB 테이블에는 orders 라는 컬럼이 생성되지 않는다. **
     private List<Order> orders = new ArrayList<>();
 
 }

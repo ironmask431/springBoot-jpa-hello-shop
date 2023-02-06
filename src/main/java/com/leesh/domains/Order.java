@@ -25,15 +25,16 @@ public class Order {
      */
     //joinColumn(fk필드) 을 설정한곳이 연관관계의 주인. 두 엔티티의 관계를 변경하려면 연관관계 주인엔티티의 값을 변경하면 된다.
     @ManyToOne(fetch = FetchType.LAZY) //Order 다 : 1 Member 관계이므로
-    @JoinColumn(name = "member_id") //Member 테이블의 어떤 DB컬럼으로 join할지 설정
+    @JoinColumn(name = "member_id") //Member 테이블의 member_id 를 fk로 설정하여 실제 ORDERS 테이블에 member_id 라는 컬럼이 생성된다.
     private Member member;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    // mappedBy 가 적용되있으므로 ** 실제 ORDERS 테이블에는 orderItems 라는 컬럼이 생성되지 않는다. **
     private List<OrderItem> orderItems = new ArrayList<>();
 
     //1:1 관계일때는 연관관계의 주인을 어느쪽에하든 관계없다.
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // order 1 : 1 delivery 관계이므로.
-    @JoinColumn(name = "delivery_id") //Delivery 테이블의 delivery_id 를 fk로 설정
+    @JoinColumn(name = "delivery_id") //Delivery 테이블의 delivery_id 를 fk로 설정하여 실제 ORDERS 테이블에 delivery_id 라는 컬럼이 생성된다.
     private Delivery delivery;
 
     private LocalDateTime orderDateTime;

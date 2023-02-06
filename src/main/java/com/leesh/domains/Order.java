@@ -28,11 +28,11 @@ public class Order {
     @JoinColumn(name = "member_id") //Member 테이블의 어떤 DB컬럼으로 join할지 설정
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     //1:1 관계일때는 연관관계의 주인을 어느쪽에하든 관계없다.
-    @OneToOne(fetch = FetchType.LAZY) // order 1 : 1 delivery 관계이므로.
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // order 1 : 1 delivery 관계이므로.
     @JoinColumn(name = "delivery_id") //Delivery 테이블의 delivery_id 를 fk로 설정
     private Delivery delivery;
 

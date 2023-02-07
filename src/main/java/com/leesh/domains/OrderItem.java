@@ -26,6 +26,12 @@ public class OrderItem {
     private int orderPrice; //주문 가격 (주문 상품 단가) - item의 가격과 따로 설정한이유 : 쿠폰할인등의 요소 고려
     private int count; //주문 수량
 
+    //private 생성자 선언이유 = 외부에서 OrderItem 객체 생성 시 createOrderItem()을 통해서 생성하라고 강제로 알려주는 용도.
+    //OrderItem orderItem = new OrderItem(); 으로 사용되는것을 방지!
+    protected OrderItem(){
+
+    }
+
     //==비즈니스 로직==//
     public void cancel() {
         this.item.addStock(count);

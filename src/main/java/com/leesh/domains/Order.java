@@ -30,7 +30,10 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     // mappedBy 가 적용되있으므로 ** 실제 ORDERS 테이블에는 orderItems 라는 컬럼이 생성되지 않는다. **
+    // CascadeType.ALL : Order객체와 그에 속한  OrderItem객체를 생성하고 Order만 save해도 OrderItem까지 insert 됨.
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    // CascdeType.ALL 을 무분별하게 사용하면 위험함. 꼭 필요한 경우가 아니라면  안쓰는게 낫겠다.
 
     //1:1 관계일때는 연관관계의 주인을 어느쪽에하든 관계없다.
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // order 1 : 1 delivery 관계이므로.
@@ -41,6 +44,12 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus; //주문상태 ORDER, CANCEL
+
+    //private 생성자 선언이유 = 외부에서 Order 객체 생성 시 createOrder()을 통해서 생성하라고 강제로 알려주는 용도.
+    //Order order = new Order(); 으로 사용되는것을 방지!
+    private Order(){
+
+    }
 
     //==양방향 연관관계 설정 메소드==//
     public void setMember(Member member){

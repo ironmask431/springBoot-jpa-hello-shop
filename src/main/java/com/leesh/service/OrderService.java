@@ -37,12 +37,23 @@ public class OrderService {
         //주문 저장
         orderRepository.save(order);
         //order 만 jpa 로 저장을 하더라도 위에서 생성한 delivery, orderItem 도 자동으로 저장이 된다.
-        //자동으로 저장 되는 이유는 Order 엔티티내의 Delivery 와 List<OrderItem> 에 cascade=ALL 옵션이 걸려있기 때문.
+        //자동으로 저장 되는 이유는 Order 엔티티내의 Delivery 와 List<OrderItem> 에 CascadeType.ALL 옵션이 걸려있기 때문.
 
         return order.getId();
     }
 
     //취소
+    @Transactional
+    public void candelOrder(Long orderId){
+        //주문 찾고
+        Order order = orderRepository.findOne(orderId);
+        //주문 취소.
+        //굉장히 간단하게 끝난다. jpa의 강점 더티체킹!(변경내역 감지하여 자동으로 update쿼리를 날려줌.)
+        order.cancel();
+    }
 
     //검색
+//    public List<Order> findOrdrers(OrderSearch orderSearch){
+//        return orderRepository.findAll();
+//    }
 }

@@ -98,3 +98,5 @@ order를 100건 조회하면 member도 100건 조회쿼리가 날아감.)
 연관된 엔티티를 함께 DB에서 조회해야 하면, fetch join 또는     
 엔티티 그래프 기능을 사용한다. @XToOne(OneToOne, ManyToOne)   
 관계는 default 가 EAGER 이므로 직접 LAZY로 설정해야 한다.    
+
+내용추가하기

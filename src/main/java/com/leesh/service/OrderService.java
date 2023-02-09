@@ -48,11 +48,11 @@ public class OrderService {
         //주문 찾고
         Order order = orderRepository.findOne(orderId);
         //주문 취소.
-        //굉장히 간단하게 끝난다. jpa의 강점 더티체킹!(변경내역 감지하여 자동으로 update쿼리를 날려줌.)
+        //굉장히 간단하게 끝난다. jpa의 강점 더티체킹!(영속성 컨텍스트 내에서 변경내역 감지하여 자동으로 update쿼리를 날려줌.)
         order.cancel();
     }
 
-    //검색
+    //상품검색
 //    public List<Order> findOrdrers(OrderSearch orderSearch){
 //        return orderRepository.findAll();
 //    }

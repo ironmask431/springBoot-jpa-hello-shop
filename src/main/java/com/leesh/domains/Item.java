@@ -2,6 +2,7 @@ package com.leesh.domains;
 
 import com.leesh.exception.NotEnoughStockException;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype") //Item 테이블안에서 movie,book,album을 어떻게 구분할지 설정. (SINGLE_TABLE 전략을 사용했으므로..)
 @Getter
+@Setter
 //구현체를 만들어서 사용할거라서 abstract(추상) 으로 선언
 public abstract class Item {
     @Id

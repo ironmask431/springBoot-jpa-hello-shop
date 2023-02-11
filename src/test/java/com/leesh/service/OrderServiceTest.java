@@ -33,27 +33,19 @@ public class OrderServiceTest {
     @Autowired
     OrderRepository orderRepository;
 
+
     /**
      * 주의사항 ***
      * @Test 어노테이션 import 주의
      * import org.junit.jupiter.api.Test; (O)
-     * import org.junit.Test; (X)
+     * import org.junit.Test; (X) 이걸로하면 에러..!!
      */
 
     @Test
     public void 상품주문() throws Exception{
         //given
-        Member member = new Member();
-        member.setName("이수환");
-        member.setAddress(new Address("서울시","광진구","1234"));
-        memberRepository.save(member);
-
-        Book book = new Book();
-        book.setName("");
-        book.setPrice(1000);
-        book.setStockQuantity(10);
-
-        itemRepository.save(book);
+        Member member = createMemeber("수환","서울","광진구","1234");
+        Book book = createBook("책책",1000,10);
 
         int orderCount = 2;
 
@@ -72,12 +64,38 @@ public class OrderServiceTest {
 
     @Test
     public void 상품주문_재고부족() throws Exception{
+        //given
+
+        //when
+
+        //then
 
     }
 
     @Test
     public void 주문취소() throws Exception{
+        //given
 
+        //when
+
+        //then
+    }
+
+    public Member createMemeber(String name, String city, String street, String zipcode){
+        Member member = new Member();
+        member.setName(name);
+        member.setAddress(new Address(city,street,zipcode));
+        memberRepository.save(member);
+        return member;
+    }
+
+    public Book createBook(String name, int price, int stock){
+        Book book = new Book();
+        book.setName(name);
+        book.setPrice(price);
+        book.setStockQuantity(stock);
+        itemRepository.save(book);
+        return book;
     }
 
 

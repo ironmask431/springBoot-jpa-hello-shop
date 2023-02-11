@@ -1,5 +1,8 @@
 package com.leesh.exception;
 
+/**
+ * RuntimeException 을 상속받아서 새로운 예외처리 생성
+ */
 public class NotEnoughStockException extends RuntimeException{
 
     public NotEnoughStockException() {

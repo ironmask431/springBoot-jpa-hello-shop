@@ -1,11 +1,11 @@
 package com.leesh.service;
 
 import com.leesh.domains.Address;
-import com.leesh.domains.Item;
 import com.leesh.domains.Member;
 import com.leesh.domains.Order;
 import com.leesh.domains.items.Book;
 import com.leesh.enums.OrderStatus;
+import com.leesh.exception.NotEnoughStockException;
 import com.leesh.repository.ItemRepository;
 import com.leesh.repository.MemberRepository;
 import com.leesh.repository.OrderRepository;
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.Assert.fail;
 
 
 @SpringBootTest
@@ -42,7 +43,7 @@ public class OrderServiceTest {
      */
 
     @Test
-    public void 상품주문() throws Exception{
+    public void 상품주문(){
         //given
         Member member = createMemeber("수환","서울","광진구","1234");
         Book book = createBook("책책",1000,10);
@@ -63,22 +64,40 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void 상품주문_재고부족() throws Exception{
+    public void 상품주문_재고부족(){
         //given
+        Member member = createMemeber("수환","서울","광진구","1234");
+        Book book = createBook("책책",1000,10);
+
+        int orderCount = 11;
 
         //when
+        try {
+            orderService.order(member.getId(), book.getId(), orderCount);
+        }catch (NotEnoughStockException e){
+            return;
+        }
 
         //then
+        fail("재고수량 부족 exception이 발생해야 한다.");
 
     }
 
     @Test
-    public void 주문취소() throws Exception{
+    public void 주문취소(){
         //given
+        Member member = createMemeber("수환","서울","광진구","1234");
+        Book book = createBook("책책",1000,10);
+        int orderCount = 2;
+        Long orderId =  orderService.order(member.getId(), book.getId(), orderCount);
 
         //when
+        orderService.cancelOrder(orderId);
 
         //then
+        Order order = orderRepository.findOne(orderId);
+        Assert.assertEquals("주문취소시 주문상태는 취소여야함.",OrderStatus.CANCEL,order.getOrderStatus());
+        Assert.assertEquals("재고는 원복되어야 한다",10,book.getStockQuantity());
     }
 
     public Member createMemeber(String name, String city, String street, String zipcode){

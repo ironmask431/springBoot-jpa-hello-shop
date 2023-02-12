@@ -1,7 +1,7 @@
 package com.leesh.repository;
 
 import com.leesh.domains.Member;
-import org.junit.jupiter.api.Assertions;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,8 +29,8 @@ class MemberRepositoryTest {
         Member findMember = memberRepository.findOne(savedId);
 
         //then
-        Assertions.assertEquals(savedId, findMember.getId());
-        Assertions.assertEquals(member.getName(), findMember.getName());
+        Assert.assertEquals(savedId, findMember.getId());
+        Assert.assertEquals(member.getName(), findMember.getName());
 
         //첫 테스트 실행 시 "No EntityManager with actual transaction available for current thread" 에러 발생
         //원인 -> 모든 엔티티 데이터 입력, 변경은 트랜잭션안에서만 이루어지므로. @Transactional 어노테이션필요함.

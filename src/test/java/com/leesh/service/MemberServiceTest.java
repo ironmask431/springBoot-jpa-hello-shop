@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 //@RunWith(SpringRunner.class) // Junit4 에서 사용 하던것, Junit 5에서는 생략가능함.
 // @ExtendWith(SpringExtension.class) 가 @SpringBootTest 에 포함되어 있음.
 @SpringBootTest
-@Transactional //@Transactional 을 @SpringBootTest 와 함께 사용될때는 기본적으로 롤백하도록 되어있음.
+@Transactional //@Transactional 을 @SpringBootTest 와 함께 사용될때는 기본적으로 각테스트시 마다 롤백하도록 되어있음.
 class MemberServiceTest {
 
     @Autowired

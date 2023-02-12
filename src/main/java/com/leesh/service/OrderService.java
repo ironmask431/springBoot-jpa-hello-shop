@@ -1,6 +1,7 @@
 package com.leesh.service;
 
 import com.leesh.domains.*;
+import com.leesh.enums.DeliveryStatus;
 import com.leesh.repository.ItemRepository;
 import com.leesh.repository.MemberRepository;
 import com.leesh.repository.OrderRepository;
@@ -27,6 +28,7 @@ public class OrderService {
         //배송정보 생성
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
+        delivery.setDeliveryStatus(DeliveryStatus.READY);
 
         //주문 상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
@@ -44,7 +46,7 @@ public class OrderService {
 
     //취소
     @Transactional
-    public void candelOrder(Long orderId){
+    public void cancelOrder(Long orderId){
         //주문 찾고
         Order order = orderRepository.findOne(orderId);
         //주문 취소.

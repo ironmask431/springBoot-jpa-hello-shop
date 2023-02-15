@@ -1,14 +1,18 @@
 package com.leesh.domains;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Member {
 
     @GeneratedValue @Id
@@ -25,5 +29,10 @@ public class Member {
     //연관관계의 하인이므로 orders 의 값을 직접변경한다고해서 DB데이터가 변경되지 않는다.
     // ** 실제 member DB 테이블에는 orders 라는 컬럼이 생성되지 않는다. **
     private List<Order> orders = new ArrayList<>();
+
+    public Member(String name, Address address){
+        this.name = name;
+        this.address = address;
+    }
 
 }

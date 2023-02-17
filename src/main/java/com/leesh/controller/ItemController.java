@@ -1,5 +1,6 @@
 package com.leesh.controller;
 
+import com.leesh.domains.Item;
 import com.leesh.domains.items.Book;
 import com.leesh.dtos.BookForm;
 import com.leesh.service.ItemService;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,5 +35,12 @@ public class ItemController {
 
         itemService.save(book);
         return "redirect:/";
+    }
+
+    @GetMapping("/items")
+    public String list(Model model){
+        List<Item> items = itemService.finaAll();
+        model.addAttribute("items",items);
+        return "items/itemList";
     }
 }

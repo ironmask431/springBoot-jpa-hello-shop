@@ -1,6 +1,7 @@
 package com.leesh.service;
 
 import com.leesh.domains.*;
+import com.leesh.dtos.OrderSearch;
 import com.leesh.enums.DeliveryStatus;
 import com.leesh.repository.ItemRepository;
 import com.leesh.repository.MemberRepository;
@@ -8,6 +9,8 @@ import com.leesh.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -55,7 +58,7 @@ public class OrderService {
     }
 
     //상품검색
-//    public List<Order> findOrdrers(OrderSearch orderSearch){
-//        return orderRepository.findAll();
-//    }
+    public List<Order> findOrdrers(OrderSearch orderSearch){
+        return orderRepository.findAll(orderSearch);
+    }
 }

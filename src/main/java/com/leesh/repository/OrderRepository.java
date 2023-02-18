@@ -1,7 +1,7 @@
 package com.leesh.repository;
 
 import com.leesh.domains.Order;
-import com.leesh.dtos.OrderSearchDto;
+import com.leesh.dtos.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -31,11 +31,11 @@ public class OrderRepository {
     //아래는 JPQL 로 동적쿼리를 처리하는 방식은 매우 번거롭고 실수로 인한 버그가 발생하기 쉬운 예시.
     //실무에서는 절대 이렇게 쓰지않는다.
     //동적쿼리 작성중 이러한 문제에 대한 해결책은 Querydsl 이 가장 멋지게 제시하였다. (이후 공부예정)
-    public List<Order> findAll(OrderSearchDto orderSearchDto){
+    public List<Order> findAll(OrderSearch orderSearch){
         String jpql = "select o From Order o join o.member m";
         boolean isFirstCondition = true;
         //주문 상태 검색
-        if (orderSearchDto.getOrderStatus() != null) {
+        if (orderSearch.getOrderStatus() != null) {
             if (isFirstCondition) {
                 jpql += " where";
                 isFirstCondition = false;
@@ -45,7 +45,7 @@ public class OrderRepository {
             jpql += " o.status = :status";
         }
         //회원 이름 검색
-        if (StringUtils.hasText(orderSearchDto.getMemberName())) {
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
             if (isFirstCondition) {
                 jpql += " where";
                 isFirstCondition = false;
@@ -56,11 +56,11 @@ public class OrderRepository {
         }
         TypedQuery<Order> query = em.createQuery(jpql, Order.class)
                 .setMaxResults(1000); //최대 1000건
-        if (orderSearchDto.getOrderStatus() != null) {
-            query = query.setParameter("status", orderSearchDto.getOrderStatus());
+        if (orderSearch.getOrderStatus() != null) {
+            query = query.setParameter("status", orderSearch.getOrderStatus());
         }
-        if (StringUtils.hasText(orderSearchDto.getMemberName())) {
-            query = query.setParameter("name", orderSearchDto.getMemberName());
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
+            query = query.setParameter("name", orderSearch.getMemberName());
         }
         return query.getResultList();
     }

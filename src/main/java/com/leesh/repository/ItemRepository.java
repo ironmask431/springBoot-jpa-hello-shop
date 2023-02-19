@@ -1,6 +1,5 @@
 package com.leesh.repository;
 
-
 import com.leesh.domains.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -26,7 +25,6 @@ public class ItemRepository {
     public Item findOne(Long id){
         return em.find(Item.class, id);
     }
-
     public List<Item> finaAll(){
         return em.createQuery("select i from Item i", Item.class).getResultList();
     }

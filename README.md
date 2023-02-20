@@ -13,9 +13,18 @@
 7. 뷰템플릿 : thymeleaf
 
 ### 이 프로젝트에 구현 되어 있는것 + 이 프로젝트를 통해 배운것
-1. 스프링부트 + JPA를 기반으로 회원가입, 상품등록, 상품주문/취소 가 가능한 간단한 웹애플리케이션 개발
-2. 
 
+서론 : 이 프로젝트는 강의목적으로 실무에서는 권장하지 않는 방법이 사용된 케이스가 있음  
+(엔티티 N:N 매핑, 엔티티에 @Setter 사용등 - )
+
+1. 스프링부트 + JPA를 기반으로 회원가입, 상품등록, 상품주문/취소 가 가능한 간단한 웹애플리케이션 개발
+2. 기본적인 타임리프 템플릿 사용법. 타임리프 view html 파일 매핑 경로 확인.
+3. application.yml 세팅 - db커넥션 설정. JPA 엔티티구조로 테이블생성, jpa 쿼리 로그에 표시하기.
+4. test 패키지는 별도의 application.yml 세팅가능. 테스트구동환경은 테스트 패키지의 application.yml 참고함. 
+5. h2 url 을 인메모리모드로 하면 실제 db를 사용하지않고 JVM안에서 가상db를 사용함. (테스트 db 환경구축용)
+6. 그러나 사실 아래 datasource 설정을 따로 안해줘도 된다.
+7. test 패키지에 application.yml 파일을 만들어주면 스프링부트에서 기본적으로 인메모리 DB모드로 테스트를 실행시키기 때문.
+8. 도메인 엔티티 설계방법. (PK, @Embedded, 1:1, 1:N, N:N 연관관계 매핑등) 
 
 - 도메인 모델 설계   
 
@@ -35,14 +44,25 @@
 
 
 -------------
-## 강의 진행
-
 ### 1. 프로젝트 환경설정
 
+1. 스프링부트 스타터로 시작 : https://start.spring.io/
+dependency 선택 : web, thymeleaf, jpa, h2, lombok, validation 등
 
+2. 롬복 적용
+- Preferences plugin lombok 검색 실행 (재시작)
+- Preferences Annotation Processors 검색 Enable annotation processing 체크 (재시작)
+
+최근 IntelliJ 버전은 Gradle로 실행을 하는 것이 기본 설정이다.  
+이렇게 하면 실행속도가 느리다. 다음과 같이 변경하면 자바로 바로 실행해서 실행속도가 더 빠르다.  
+- Preferences Build, Execution, Deployment Build Tools Gradle
+- Build and run using: Gradle IntelliJ IDEA
+- Run tests using: Gradle IntelliJ IDEA
+
+3. 로컬에 h2 DB설치
 h2 DB 실행경로 : /h2/bin/h2.sh   
-최초 접속 시 url :    
-그리고 홈 경로에 ```jpashop.mv.db``` 파일이 생성된것을 확인한다.   
+최초 접속 시 url : ```jdbc:h2:~/jpashop```  접속.  
+최초접속 후 홈 경로에 ```jpashop.mv.db``` 파일이 생성된것을 확인한다.   
 이후 접속 시 url : jdbc:h2:tcp://localhost/~/jpashop   
 
 ### 2.도메인 분석 설계

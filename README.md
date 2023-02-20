@@ -15,16 +15,30 @@
 ### 이 프로젝트에 구현 되어 있는것 + 이 프로젝트를 통해 배운것
 
 서론 : 이 프로젝트는 강의목적으로 실무에서는 권장하지 않는 방법이 사용된 케이스가 있음  
-(엔티티 N:N 매핑, 엔티티에 @Setter 사용등 - )
+(엔티티 N:N 매핑, 엔티티, dto 에 @Setter 사용등 - 리팩토링이 필요함.)
 
 1. 스프링부트 + JPA를 기반으로 회원가입, 상품등록, 상품주문/취소 가 가능한 간단한 웹애플리케이션 개발
 2. 기본적인 타임리프 템플릿 사용법. 타임리프 view html 파일 매핑 경로 확인.
 3. application.yml 세팅 - db커넥션 설정. JPA 엔티티구조로 테이블생성, jpa 쿼리 로그에 표시하기.
-4. test 패키지는 별도의 application.yml 세팅가능. 테스트구동환경은 테스트 패키지의 application.yml 참고함. 
-5. h2 url 을 인메모리모드로 하면 실제 db를 사용하지않고 JVM안에서 가상db를 사용함. (테스트 db 환경구축용)
-6. 그러나 사실 아래 datasource 설정을 따로 안해줘도 된다.
-7. test 패키지에 application.yml 파일을 만들어주면 스프링부트에서 기본적으로 인메모리 DB모드로 테스트를 실행시키기 때문.
-8. 도메인 엔티티 설계방법. (PK, @Embedded, 1:1, 1:N, N:N 연관관계 매핑등) 
+4. test 패키지는 별도의 application.yml 세팅가능. 테스트구동환경은 테스트 패키지의 application.yml 을 참고함. 
+5. 도메인 엔티티 설계방법. (PK, @Embedded, 1:1, 1:N, N:N 연관관계 매핑, CascadeType 에 대해) 
+6. 연관관계를 모두 (fetch = FetchType.LAZY) 로 설정해야 하는 이유. (N+1 문제)
+7. 엔티티관련 비즈니스 로직은 엔티티 내부에 설정해놓는게 응집도가 좋다. 
+8. enum 타입 DB저장방식 2가지
+9. category 엔티티 parent-child 계층 구조 설계
+10. 
+---
+모든 연관관계는 지연로딩으로 설정!  
+  
+* 즉시로딩( EAGER )은 예측이 어렵고, 어떤 SQL이 실행될지 추적하기 어렵다.   
+특히 JPQL을 실행할 때 N+1 문제가 자주 발생한다.    
+(N+1 문제. 아래 @ManyToOne 을 EAGER 로 해놓으면.jpql을 사용해서   
+order를 100건 조회하면 member도 100건 조회쿼리가 날아감.)    
+실무에서 모든 연관관계는 지연로딩( LAZY )으로 설정해야 한다.   
+연관된 엔티티를 함께 DB에서 조회해야 하면, fetch join 또는     
+엔티티 그래프 기능을 사용한다. @XToOne(OneToOne, ManyToOne)   
+관계는 default 가 EAGER 이므로 직접 LAZY로 설정해야 한다.  
+---
 
 - 도메인 모델 설계   
 
@@ -71,21 +85,5 @@ src/main/java/com/leesh/domains 경로에 도메인 클래스들 생성.
 
 ![스크린샷 2023-01-27 오전 9 10 52](https://user-images.githubusercontent.com/48856906/214979019-82633210-48ef-4d4f-a3d0-064e765bc60e.png)
 
-## 3. 엔티티 설계 시 주의점
-1. 엔티티에는 가급적 Setter를 사용하지 말자 
   
-* Setter가 모두 열려있으면 변경 포인트가 너무 많아서, 유지보수가 어렵다.    
-나중에 리펙토링으로 Setter 제거
 
-2. 모든 연관관계는 지연로딩으로 설정!  
-  
-* 즉시로딩( EAGER )은 예측이 어렵고, 어떤 SQL이 실행될지 추적하기 어렵다.   
-특히 JPQL을 실행할 때 N+1 문제가 자주 발생한다.    
-(N+1 문제. 아래 @ManyToOne 을 EAGER 로 해놓으면.jpql을 사용해서   
-order를 100건 조회하면 member도 100건 조회쿼리가 날아감.)    
-실무에서 모든 연관관계는 지연로딩( LAZY )으로 설정해야 한다.   
-연관된 엔티티를 함께 DB에서 조회해야 하면, fetch join 또는     
-엔티티 그래프 기능을 사용한다. @XToOne(OneToOne, ManyToOne)   
-관계는 default 가 EAGER 이므로 직접 LAZY로 설정해야 한다.    
-
-내용추가하기

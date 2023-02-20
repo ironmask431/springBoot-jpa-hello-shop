@@ -9,13 +9,13 @@ import com.leesh.exception.NotEnoughStockException;
 import com.leesh.repository.ItemRepository;
 import com.leesh.repository.MemberRepository;
 import com.leesh.repository.OrderRepository;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 @SpringBootTest
@@ -56,10 +56,10 @@ public class OrderServiceTest {
         //then
         Order order = orderRepository.findOne(orderId);
 
-        Assert.assertEquals("상품 주문 시 주문상태는 ORDER", OrderStatus.ORDER, order.getOrderStatus());
-        Assert.assertEquals("주문한 상품 종류수 확인",1,order.getOrderItems().size());
-        Assert.assertEquals("총 주문금액은 가격 * 수량",1000 * orderCount, order.getTotalPrice());
-        Assert.assertEquals("주문수량만큼 재고 차감", 8, book.getStockQuantity());
+        Assertions.assertEquals(OrderStatus.ORDER, order.getOrderStatus());
+        Assertions.assertEquals(1,order.getOrderItems().size());
+        Assertions.assertEquals(1000 * orderCount, order.getTotalPrice());
+        Assertions.assertEquals( 8, book.getStockQuantity());
 
     }
 
@@ -96,8 +96,8 @@ public class OrderServiceTest {
 
         //then
         Order order = orderRepository.findOne(orderId);
-        Assert.assertEquals("주문취소시 주문상태는 취소여야함.",OrderStatus.CANCEL,order.getOrderStatus());
-        Assert.assertEquals("재고는 원복되어야 한다",10,book.getStockQuantity());
+        Assertions.assertEquals(OrderStatus.CANCEL,order.getOrderStatus());
+        Assertions.assertEquals(10,book.getStockQuantity());
     }
 
     public Member createMemeber(String name, String city, String street, String zipcode){

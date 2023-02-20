@@ -1,7 +1,7 @@
 package com.leesh.repository;
 
 import com.leesh.domains.Member;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,8 +32,8 @@ class MemberRepositoryTest {
         Member findMember = memberRepository.findOne(savedId);
 
         //then
-        Assert.assertEquals(savedId, findMember.getId());
-        Assert.assertEquals(member.getName(), findMember.getName());
+        Assertions.assertEquals(savedId, findMember.getId());
+        Assertions.assertEquals(member.getName(), findMember.getName());
     }
 
     @Test

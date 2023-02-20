@@ -2,7 +2,7 @@ package com.leesh.service;
 
 import com.leesh.domains.Member;
 import com.leesh.repository.MemberRepository;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,7 +34,7 @@ class MemberServiceTest {
 
         //@Transactional 안에서는 같은 영속성 컨텍스트가 걸리므로 id가 같은 엔티티는 동일한 엔티티로 취급된다.
         //then
-        Assert.assertEquals(member, memberRepository.findOne(savedId));
+        Assertions.assertEquals(member, memberRepository.findOne(savedId));
     }
 
     @Test

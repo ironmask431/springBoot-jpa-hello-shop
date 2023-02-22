@@ -21,12 +21,12 @@
 2. 기본적인 타임리프 템플릿 사용법. 타임리프 view html 파일 매핑 경로 확인.
 3. application.yml 세팅 - db커넥션 설정. JPA 엔티티구조로 테이블생성, jpa 쿼리 로그에 표시하기.
 4. test 패키지는 별도의 application.yml 세팅가능. 테스트구동환경은 테스트 패키지의 application.yml 을 참고함. 
-5. 도메인 엔티티 설계방법. (PK, @Embedded, 1:1, 1:N, N:N 연관관계 매핑, CascadeType 에 대해) 
+5. 도메인 엔티티 설계방법. (PK, @Embedded, 1:1, 1:N, N:N, 연관관계의 주인과 하인, CascadeType 에 대해) 
 6. 연관관계를 모두 (fetch = FetchType.LAZY) 로 설정해야 하는 이유. (N+1 문제)
-7. 엔티티관련 비즈니스 로직은 엔티티 내부에 설정해놓는게 응집도가 좋다. 
-8. enum 타입 DB저장방식 2가지
+7. 엔티티의 필드값 관련 비즈니스 로직은 엔티티 내부에 설정해놓는게 응집도가 좋다. (서비스단에서 하는것은 객체지향관점에서 좋지않음.)
+8. enum 타입 DB저장방식 2가지 (EnumType.ORDINAL, EnumType.STRING)
 9. category 엔티티 parent-child 계층 구조 설계
-10. 
+
 ---
 모든 연관관계는 지연로딩으로 설정!  
   

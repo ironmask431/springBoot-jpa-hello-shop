@@ -86,7 +86,18 @@ h2 DB 실행경로 : /h2/bin/h2.sh
 src/main/java/com/leesh/domains 경로에 도메인 클래스들 생성.   
 이후 서버 구동 시 h2 DB에 테이블이 정상적으로 생성된 것 확인 할 수 있다.
 
-![스크린샷 2023-01-27 오전 9 10 52](https://user-images.githubusercontent.com/48856906/214979019-82633210-48ef-4d4f-a3d0-064e765bc60e.png)
+* 도메인을 기준으로 생성된 테이블 구조  
+![테이블구조1](https://user-images.githubusercontent.com/48856906/221398534-d5738d8e-3788-4c7a-bcc7-35b2c5797960.PNG) ![테이블구조2](https://user-images.githubusercontent.com/48856906/221398537-808fa3fc-c1a3-4812-8544-6e161af8f27b.PNG)
 
-  
+### 3.VIEW
+
+![뷰01](https://user-images.githubusercontent.com/48856906/221398589-0d72bb52-7200-4de8-8d02-ee7607761681.PNG)
+![뷰02](https://user-images.githubusercontent.com/48856906/221398590-cdf0781e-fab0-44f0-b05e-66ad4388b091.PNG)
+![뷰03](https://user-images.githubusercontent.com/48856906/221398591-d8dcbcc1-9b36-4194-9cae-5e0030c6d4ea.PNG)
+![뷰04](https://user-images.githubusercontent.com/48856906/221398592-ed0f5d0b-3b1c-4590-a6b5-af5d67317af0.PNG)
+![뷰05](https://user-images.githubusercontent.com/48856906/221398594-fe072c0c-b2dd-4b54-b972-f2754f7fdcd9.PNG)
+![뷰06](https://user-images.githubusercontent.com/48856906/221398595-e0b236b1-1f50-4afd-bb4c-b2b5b0a0bdf8.PNG)
+![뷰07](https://user-images.githubusercontent.com/48856906/221398596-61f58827-5909-4129-8ab9-b59b7cd0f1ae.PNG)
+
+
 

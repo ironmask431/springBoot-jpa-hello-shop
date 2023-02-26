@@ -14,19 +14,21 @@
 
 ### 이 프로젝트에 구현 되어 있는것 + 이 프로젝트를 통해 배운것
 
-서론 : 이 프로젝트는 강의목적으로 실무에서는 권장하지 않는 방법이 사용된 케이스가 있음  
+서론 : 이 프로젝트는 강의목적으로 실무에서는 권장하지 않는 방법이 많이 사용됨.  
 (엔티티 N:N 매핑, 엔티티, dto 에 @Setter 사용등 - 리팩토링이 필요함.)
 
 1. 스프링부트 + JPA를 기반으로 회원가입, 상품등록, 상품주문/취소 가 가능한 간단한 웹애플리케이션 개발
 2. 기본적인 타임리프 템플릿 사용법. 타임리프 view html 파일 매핑 경로 확인.
 3. application.yml 세팅 - db커넥션 설정. JPA 엔티티구조로 테이블생성, jpa 쿼리 로그에 표시하기.
 4. test 패키지는 별도의 application.yml 세팅가능. 테스트구동환경은 테스트 패키지의 application.yml 을 참고함. 
+5. test 패키지에 application.yml 파일을 만들어주면 기본적으로 인메모리 DB모드로 테스트를 실행함. (실DB없이 테스트 가능)
 5. 도메인 엔티티 설계방법. (PK, @Embedded, 1:1, 1:N, N:N, 연관관계의 주인과 하인, CascadeType 에 대해) 
 6. 연관관계를 모두 (fetch = FetchType.LAZY) 로 설정해야 하는 이유. (N+1 문제)
 7. 엔티티의 필드값 관련 비즈니스 로직은 엔티티 내부에 설정해놓는게 응집도가 좋다. (서비스단에서 하는것은 객체지향관점에서 좋지않음.)
-8. enum 타입 DB저장방식 2가지 (EnumType.ORDINAL, EnumType.STRING)
+8. enum 타입 DB저장방식 2가지 (EnumType.ORDINAL, EnumType.STRING) - ORDINAL로 쓸경우 위험성.
 9. category 엔티티 parent-child 계층 구조 설계
-10. 테스트코드 관련내용 추가하기
+10. RuntimeException 을 상속받아서 신규 Exception 클래스 생성.
+11. @Test 어노테이션에서 실행된 쿼리들은 모두 자동 롤백처리되는 속성
 
 ---
 모든 연관관계는 지연로딩으로 설정!  
@@ -71,8 +73,8 @@ dependency 선택 : web, thymeleaf, jpa, h2, lombok, validation 등
 최근 IntelliJ 버전은 Gradle로 실행을 하는 것이 기본 설정이다.  
 이렇게 하면 실행속도가 느리다. 다음과 같이 변경하면 자바로 바로 실행해서 실행속도가 더 빠르다.  
 - Preferences Build, Execution, Deployment Build Tools Gradle
-- Build and run using: Gradle IntelliJ IDEA
-- Run tests using: Gradle IntelliJ IDEA
+- Build and run using: Gradle -> IntelliJ IDEA
+- Run tests using: Gradle -> IntelliJ IDEA
 
 3. 로컬에 h2 DB설치
 h2 DB 실행경로 : /h2/bin/h2.sh   

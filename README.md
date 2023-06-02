@@ -64,7 +64,10 @@ order를 100건 조회하면 member도 100건 조회쿼리가 날아감.)
 ### 1. 프로젝트 환경설정
 
 1. 스프링부트 스타터로 시작 : https://start.spring.io/  
-dependency 선택 : web, thymeleaf, jpa, h2, lombok, validation 등
+dependency 선택 : spring web, thymeleaf, jpa, h2, lombok, validation 등
+기본 프로젝트 파일 다운로드 받음.
+
+1-1. ide > open > 다운받은 프로젝트의 build.gradle 파일 오픈
 
 2. 롬복 적용
 - Preferences plugin lombok 검색 실행 (재시작)

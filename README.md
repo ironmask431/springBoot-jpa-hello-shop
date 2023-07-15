@@ -22,13 +22,16 @@
 3. application.yml 세팅 - db커넥션 설정. JPA 엔티티구조로 테이블생성, jpa 쿼리 로그에 표시하기.
 4. test 패키지는 별도의 application.yml 세팅가능. 테스트구동환경은 테스트 패키지의 application.yml 을 참고함. 
 5. test 패키지에 application.yml 파일을 만들어주면 기본적으로 인메모리 DB모드로 테스트를 실행함. (실DB없이 테스트 가능)
-5. 도메인 엔티티 설계방법. (PK, @Embedded, 1:1, 1:N, N:N, 연관관계의 주인과 하인, CascadeType 에 대해) 
-6. 연관관계를 모두 (fetch = FetchType.LAZY) 로 설정해야 하는 이유. (N+1 문제)
-7. 엔티티의 필드값 관련 비즈니스 로직은 엔티티 내부에 설정해놓는게 응집도가 좋다. (서비스단에서 하는것은 객체지향관점에서 좋지않음.)
-8. enum 타입 DB저장방식 2가지 (EnumType.ORDINAL, EnumType.STRING) - ORDINAL로 쓸경우 위험성.
-9. category 엔티티 parent-child 계층 구조 설계
-10. RuntimeException 을 상속받아서 신규 Exception 클래스 생성.
-11. @Test 어노테이션에서 실행된 쿼리들은 모두 자동 롤백처리되는 속성
+5. 도메인 엔티티 설계방법.
+6. @Id, @GenerateValue 를 이용해 PK 설정
+7. @Embedded 를 이용해 내장타입 속성 설정
+8. @OneToOne @ManyToOne, @OneToMany 를 이용해 1:1, 1:N, N:N 관계 설정, 연관관계의 주인과 하인
+9. 연관관계를 모두 (fetch = FetchType.LAZY) 로 설정해야 하는 이유. (N+1 문제)
+10. 엔티티의 필드값 관련 비즈니스 로직은 엔티티 내부에 설정해놓는게 응집도가 좋다. (서비스단에서 하는것은 객체지향관점에서 좋지않음.)
+11. enum 타입 DB저장방식 2가지 (EnumType.ORDINAL, EnumType.STRING) - ORDINAL로 쓸경우 위험성.
+12. category 엔티티 parent-child 계층 구조 설계
+13. RuntimeException 을 상속받아서 신규 Exception 클래스 생성.
+14. @Test 어노테이션에서 실행된 쿼리들은 모두 자동 롤백처리되는 속성
 
 ---
 모든 연관관계는 지연로딩으로 설정!  

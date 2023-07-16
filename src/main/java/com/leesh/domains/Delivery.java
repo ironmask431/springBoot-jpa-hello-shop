@@ -16,7 +16,8 @@ public class Delivery {
     @Column(name="delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY) //연관관계의 하인. 이 필드값은 Order 테이블의 delivery 필드값에 의해 변경됨을 의미.
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
+    //mappedBy = 연관관계의 하인. 이 필드값은 Order 테이블의 delivery 필드값에 의해 변경됨을 의미.
     //이 필드값을 직접변경해도 DB 업데이트가 일어나지않는다.
     private Order order;
 

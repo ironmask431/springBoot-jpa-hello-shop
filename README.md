@@ -64,7 +64,7 @@ order를 100건 조회하면 member도 100건 조회쿼리가 날아감.)
 
 
 -------------
-### 1. 프로젝트 환경설정
+### * 프로젝트 환경설정
 
 1. 스프링부트 스타터로 시작 : https://start.spring.io/  
 dependency 선택 : spring web, thymeleaf, jpa, h2, lombok, validation 등
@@ -88,7 +88,7 @@ h2 DB 실행경로 : /h2/bin/h2.sh
 최초접속 후 홈 경로에 ```jpashop.mv.db``` 파일이 생성된것을 확인한다.   
 이후 접속 시 url : jdbc:h2:tcp://localhost/~/jpashop   
 
-### 2.도메인 분석 설계
+### * 도메인 분석 설계
 src/main/java/com/leesh/domains 경로에 도메인 클래스들 생성.   
 이후 서버 구동 시 h2 DB에 테이블이 정상적으로 생성된 것 확인 할 수 있다.
 

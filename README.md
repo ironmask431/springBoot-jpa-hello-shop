@@ -25,13 +25,16 @@
 5. 도메인 엔티티 설계방법.
 6. @Id, @GenerateValue 를 이용해 PK 설정
 7. @Embedded 를 이용해 내장타입 속성 설정
-8. @OneToOne @ManyToOne, @OneToMany 를 이용해 1:1, 1:N, N:N 관계 설정, 연관관계의 주인과 하인
-9. 연관관계를 모두 (fetch = FetchType.LAZY) 로 설정해야 하는 이유. (N+1 문제)
-10. 엔티티의 필드값 관련 비즈니스 로직은 엔티티 내부에 설정해놓는게 응집도가 좋다. (서비스단에서 하는것은 객체지향관점에서 좋지않음.)
-11. enum 타입 DB저장방식 2가지 (EnumType.ORDINAL, EnumType.STRING) - ORDINAL로 쓸경우 위험성.
-12. category 엔티티 parent-child 계층 구조 설계
-13. RuntimeException 을 상속받아서 신규 Exception 클래스 생성.
-14. @Test 어노테이션에서 실행된 쿼리들은 모두 자동 롤백처리되는 속성
+8. @OneToOne @ManyToOne, @OneToMany 를 이용해 1:1, 1:N, N:N 관계 설정,
+9. 두 엔티티간의 연관관계의 주인과 하인 설정 (@JoinColumn 과 mappedBy 속성)
+10. @ManyToMany 다대다 관계는 실무에서 쓰기 부적합. 중간 릴레이션 테이블을 두는것이 좋다.
+11. 연관관계를 모두 (fetch = FetchType.LAZY) 로 설정해야 하는 이유. (N+1 문제)
+12. CascdeType 에 대한 이해. (+ CascdeType.ALL의 무분별한 사용은 위험. 꼭 필요하지않으면 안쓰는게 좋음.)
+13. 엔티티의 필드값 관련 비즈니스 로직은 엔티티 내부에 설정해놓는게 응집도가 좋다. (서비스단에서 하는것은 객체지향관점에서 좋지않음.)
+14. enum 타입 DB저장방식 2가지 (EnumType.ORDINAL, EnumType.STRING) - ORDINAL로 쓸경우 위험성존재.
+15. category 엔티티 parent-child 계층 구조 설계
+16. RuntimeException 을 상속받아서 신규 Exception 클래스 생성.
+17. @Test 어노테이션에서 실행된 쿼리들은 모두 자동 롤백처리되는 속성
 
 ---
 모든 연관관계는 지연로딩으로 설정!  
@@ -70,6 +73,9 @@ order를 100건 조회하면 member도 100건 조회쿼리가 날아감.)
 dependency 선택 : spring web, thymeleaf, jpa, h2, lombok, validation 등
 기본 프로젝트 파일 다운로드 받음.
 
+1-0. 스프링부트 3.0 부터는 JAVA 17 이상 사용 필요. 
+여기서는 스프링부트 2.4 / JAVA 11 을 사용함.
+
 1-1. ide > open > 다운받은 프로젝트의 build.gradle 파일 오픈
 
 2. 롬복 적용
@@ -78,7 +84,7 @@ dependency 선택 : spring web, thymeleaf, jpa, h2, lombok, validation 등
 
 최근 IntelliJ 버전은 Gradle로 실행을 하는 것이 기본 설정이다.  
 이렇게 하면 실행속도가 느리다. 다음과 같이 변경하면 자바로 바로 실행해서 실행속도가 더 빠르다.  
-- Preferences Build, Execution, Deployment Build Tools Gradle
+- Preferences >  Build, Execution, Deployment > Build Tools > Gradle
 - Build and run using: Gradle -> IntelliJ IDEA
 - Run tests using: Gradle -> IntelliJ IDEA
 
